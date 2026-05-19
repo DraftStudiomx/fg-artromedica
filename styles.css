@@ -742,7 +742,7 @@ body[data-hero="b"] .scroll-cue { display: none; }
 .clients-section { padding: 80px 0; }
 .clients-row {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 0;
   border-top: 1px solid var(--c-line);
   border-bottom: 1px solid var(--c-line);
@@ -751,26 +751,15 @@ body[data-hero="b"] .scroll-cue { display: none; }
   height: 100px;
   display: grid;
   place-items: center;
-  padding: 16px 20px;
   border-right: 1px solid var(--c-line);
-  transition: opacity .2s ease;
+  color: var(--c-ink-400);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: color .2s ease;
 }
 .client-logo:last-child { border-right: none; }
-.client-logo:hover { opacity: 0.75; }
-.client-logo img {
-  max-width: 100%;
-  max-height: 60px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.6;
-  transition: filter .2s ease, opacity .2s ease;
-}
-.client-logo:hover img {
-  filter: grayscale(0%);
-  opacity: 1;
-}
+.client-logo:hover { color: var(--c-navy-700); }
 .clients-label {
   text-align: center;
   font-size: 12px;
@@ -1385,8 +1374,8 @@ body[data-hero="a"] .nav:not(.scrolled) .btn-primary:hover {
   .contact-cta-inner { grid-template-columns: 1fr; gap: 40px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .catalog-grid { grid-template-columns: repeat(3, 1fr); }
-  .clients-row { grid-template-columns: repeat(4, 1fr); }
-  .client-logo:nth-child(4n) { border-right: none; }
+  .clients-row { grid-template-columns: repeat(3, 1fr); }
+  .client-logo:nth-child(3n) { border-right: none; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
   .footer-grid-3 { grid-template-columns: 1fr 1fr; }
@@ -1404,9 +1393,9 @@ body[data-hero="a"] .nav:not(.scrolled) .btn-primary:hover {
   .about-stats .item:last-child { border-bottom: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid-3 { grid-template-columns: 1fr; }
-  .clients-row { grid-template-columns: repeat(3, 1fr); }
-  .client-logo:nth-child(4n) { border-right: 1px solid var(--c-line); }
-  .client-logo:nth-child(3n) { border-right: none; }
+  .clients-row { grid-template-columns: repeat(2, 1fr); }
+  .client-logo:nth-child(3n) { border-right: 1px solid var(--c-line); }
+  .client-logo:nth-child(2n) { border-right: none; }
   .stat-num { font-size: 40px; }
   .contact-cta-actions { flex-direction: column; }
   .contact-cta-actions .btn { justify-content: center; }
