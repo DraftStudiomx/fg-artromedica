@@ -1,0 +1,8 @@
+uploads/
+screenshots/
+*.zip
+*.pdf
+*.docx
+*.doc
+.DS_Store
+Thumbs.db
