@@ -739,35 +739,69 @@ body[data-hero="b"] .scroll-cue { display: none; }
 .catalog-foot p b { color: var(--c-ink-900); }
 
 /* ========== Clientes (logos) ========== */
-.clients-section { padding: 80px 0; }
-.clients-row {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--c-line);
-  border-bottom: 1px solid var(--c-line);
-}
-.client-logo {
-  height: 100px;
-  display: grid;
-  place-items: center;
-  border-right: 1px solid var(--c-line);
-  color: var(--c-ink-400);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  transition: color .2s ease;
-}
-.client-logo:last-child { border-right: none; }
-.client-logo:hover { color: var(--c-navy-700); }
+.clients-section { padding: 72px 0; }
 .clients-label {
   text-align: center;
   font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--c-ink-500);
-  margin-bottom: 32px;
+  margin-bottom: 40px;
   font-weight: 500;
+}
+.clients-marquee {
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+}
+.clients-marquee::before,
+.clients-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 140px;
+  z-index: 2;
+  pointer-events: none;
+}
+.clients-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, #f8f9fb, transparent);
+}
+.clients-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, #f8f9fb, transparent);
+}
+.clients-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.clients-track:hover { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.client-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 40px;
+  flex-shrink: 0;
+}
+.client-logo img {
+  height: 44px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.55;
+  transition: filter .25s ease, opacity .25s ease;
+}
+.client-logo:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 /* ========== Contacto ========== */
