@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Catálogo de Productos — FG ARTROMEDICA</title>
+<meta name="description" content="Catálogo de productos FG Artromédica: implantes biológicos Biograft, ortesis y soportes Daonsa, y paquetes quirúrgicos Medline para instrumentación ortopédica de alta especialidad." />
+<meta name="robots" content="index, follow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+/* ===== CATÁLOGO · estilos propios ===== */
+
+/* ---- filter section ---- */
+.cat-filter-section {
+  padding: 32px 0 0;
+}
+.cat-filter-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+}
+.cat-filter-row + .cat-filter-row {
+  border-top: 1px solid var(--c-line);
+  padding-top: 16px;
+}
+.cat-filter-row-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-ink-400);
+  padding: 11px 0 0;
+  white-space: nowrap;
+  min-width: 66px;
+}
+.cat-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.cat-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-family: var(--ff);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--c-line);
+  background: var(--c-bg);
+  color: var(--c-ink-500);
+  transition: all .18s ease;
+  letter-spacing: -0.01em;
+}
+.cat-tab:hover {
+  border-color: var(--c-blue-200);
+  color: var(--c-navy-700);
+  background: var(--c-silver);
+}
+.cat-tab.active {
+  background: var(--c-navy-700);
+  border-color: var(--c-navy-700);
+  color: #fff;
+}
+.cat-tab .brand-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.cat-tab .count {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.22);
+}
+.cat-tab:not(.active) .count {
+  background: var(--c-silver);
+  color: var(--c-ink-400);
+}
+
+/* ---- grid ---- */
+.cat-section { padding: 40px 0 80px; }
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+/* ---- product card ---- */
+.prod-card {
+  background: var(--c-bg);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--sh-soft);
+  transition: box-shadow .25s ease, transform .25s ease;
+  cursor: pointer;
+}
+.prod-card:hover {
+  box-shadow: var(--sh-pop);
+  transform: translateY(-3px);
+}
+.prod-card-media {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--c-silver);
+  position: relative;
+}
+.prod-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .35s ease;
+}
+.prod-card-media img.img-contain {
+  object-fit: contain;
+  padding: 16px;
+  background: #f4f7fb;
+}
+.prod-card:hover .prod-card-media img {
+  transform: scale(1.04);
+}
+.prod-card:hover .prod-card-media img.img-contain {
+  transform: scale(1.03);
+}
+.prod-card-body {
+  padding: 18px 20px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.brand-badge.biograft { background: #E8F7F4; color: #0A7A6B; }
+.brand-badge.daonsa   { background: #E6F4FB; color: #0080BB; }
+.brand-badge.medline  { background: #FEF0F0; color: #C41E3A; }
+.brand-badge.biotek   { background: #FFF4E6; color: #C25E00; }
+
+.area-badge {
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--c-silver);
+  color: var(--c-ink-500);
+  border: 1px solid var(--c-line);
+}
+
+.prod-name {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--c-ink-900);
+  margin: 0;
+}
+.prod-desc {
+  font-size: 13.5px;
+  color: var(--c-ink-500);
+  line-height: 1.5;
+  flex: 1;
+}
+.prod-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px 20px 16px;
+  border-top: 1px solid var(--c-line);
+}
+.btn-ver {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ff);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-navy-700);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  letter-spacing: -0.01em;
+  transition: gap .2s ease;
+}
+.btn-ver:hover { gap: 9px; }
+
+/* ---- modal ---- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(11, 31, 63, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal-box {
+  background: var(--c-bg);
+  border-radius: var(--r-xl);
+  max-width: 860px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  box-shadow: var(--sh-deep);
+  position: relative;
+  transform: translateY(16px);
+  transition: transform .25s ease;
+}
+.modal-overlay.open .modal-box {
+  transform: translateY(0);
+}
+.modal-media {
+  position: relative;
+  border-radius: var(--r-xl) 0 0 var(--r-xl);
+  overflow: hidden;
+  background: var(--c-silver);
+  min-height: 320px;
+}
+.modal-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.modal-media img.img-contain {
+  object-fit: contain;
+  padding: 24px;
+  background: #f4f7fb;
+}
+.modal-media-brand {
+  position: absolute;
+  top: 16px; left: 16px;
+  z-index: 2;
+}
+.modal-content {
+  padding: 32px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  z-index: 10;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  transition: background .15s;
+}
+.modal-close:hover { background: #fff; }
+.modal-title {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--c-ink-900);
+  margin: 0;
+}
+.modal-subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-ink-400);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.modal-desc {
+  font-size: 14.5px;
+  color: var(--c-ink-700);
+  line-height: 1.65;
+}
+.modal-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-ink-400);
+  margin-bottom: 10px;
+}
+.modal-variants {
+  background: var(--c-silver);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+}
+.modal-variants ul {
+  margin: 0; padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.modal-variants ul li {
+  font-size: 13px;
+  color: var(--c-ink-700);
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.modal-variants ul li::before {
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--c-blue-200);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.modal-chars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.modal-char-tag {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: var(--c-silver);
+  color: var(--c-ink-700);
+  border: 1px solid var(--c-line);
+}
+.modal-code {
+  font-size: 11px;
+  font-family: monospace;
+  color: var(--c-ink-400);
+  background: var(--c-silver);
+  padding: 2px 8px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.modal-cta {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-line);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn-sm {
+  padding: 9px 18px !important;
+  font-size: 13px !important;
+}
+
+/* ---- empty state ---- */
+.cat-empty {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--c-ink-400);
+  font-size: 15px;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 980px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .modal-box { grid-template-columns: 1fr; max-height: 92vh; }
+  .modal-media { min-height: 220px; border-radius: var(--r-xl) var(--r-xl) 0 0; }
+  .modal-content { padding: 22px 20px 18px; }
+  .cat-filter-row-label { min-width: 56px; font-size: 10px; }
+}
+@media (max-width: 640px) {
+  .cat-grid { grid-template-columns: 1fr; }
+  .modal-overlay { padding: 10px; }
+  .modal-box { border-radius: var(--r-lg); }
+  .modal-media { min-height: 180px; }
+  .cat-filter-row { gap: 6px; }
+  .cat-tab { padding: 7px 12px; font-size: 12px; }
+}
+</style>
+</head>
+<body data-hero="a">
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.jpg" alt="FG Artromédica" class="logo-img" />
+      <span class="brand-name">
+        <b>FG ARTROMEDICA</b>
+        <span>Instrumentación Quirúrgica</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="catalogo.html" aria-current="page">Catálogo</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <a href="contacto.html" class="btn btn-primary btn-cta-nav">
+      Solicitar Cotización
+      <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <button class="nav-mobile-toggle" aria-label="Abrir menú" id="mobile-toggle">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero" aria-label="Catálogo">
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow">Catálogo</span>
+    <h1 class="h-display">Productos de <span class="accent">alta especialidad</span> para el quirófano.</h1>
+    <p class="lede">Distribuimos productos de las marcas líderes en ortopedia y cirugía: implantes biológicos, ortesis posoperatorias y paquetes quirúrgicos estériles. Todo respaldado con asistencia técnica especializada.</p>
+  </div>
+</section>
+
+<!-- ============ CATÁLOGO ============ -->
+<section class="cat-section" aria-label="Catálogo de productos">
+  <div class="wrap">
+
+    <!-- Filtros dobles -->
+    <div class="cat-filter-section">
+      <!-- Fila 1: Proveedor -->
+      <div class="cat-filter-row">
+        <span class="cat-filter-row-label">Proveedor</span>
+        <div class="cat-filters" id="brand-filters" role="tablist" aria-label="Filtrar por proveedor">
+          <button class="cat-tab active" data-brand="all" role="tab" aria-selected="true">
+            Todos <span class="count" id="count-all">31</span>
+          </button>
+          <button class="cat-tab" data-brand="biograft" role="tab" aria-selected="false">
+            <span class="brand-dot" style="background:#0A7A6B"></span>
+            Biograft <span class="count">2</span>
+          </button>
+          <button class="cat-tab" data-brand="daonsa" role="tab" aria-selected="false">
+            <span class="brand-dot" style="background:#0080BB"></span>
+            Daonsa <span class="count">9</span>
+          </button>
+          <button class="cat-tab" data-brand="medline" role="tab" aria-selected="false">
+            <span class="brand-dot" style="background:#C41E3A"></span>
+            Medline <span class="count">11</span>
+          </button>
+          <button class="cat-tab" data-brand="biotek" role="tab" aria-selected="false">
+            <span class="brand-dot" style="background:#C25E00"></span>
+            Biotek <span class="count">9</span>
+          </button>
+        </div>
+      </div>
+      <!-- Fila 2: Área -->
+      <div class="cat-filter-row">
+        <span class="cat-filter-row-label">Área</span>
+        <div class="cat-filters" id="area-filters" role="tablist" aria-label="Filtrar por área">
+          <button class="cat-tab active" data-area="all" role="tab" aria-selected="true">
+            Todas
+          </button>
+          <button class="cat-tab" data-area="rodilla" role="tab" aria-selected="false">Rodilla</button>
+          <button class="cat-tab" data-area="hombro" role="tab" aria-selected="false">Hombro</button>
+          <button class="cat-tab" data-area="tobillo" role="tab" aria-selected="false">Tobillo &amp; Pie</button>
+          <button class="cat-tab" data-area="muneca" role="tab" aria-selected="false">Muñeca &amp; Codo</button>
+          <button class="cat-tab" data-area="implantes" role="tab" aria-selected="false">Implantes Biológicos</button>
+          <button class="cat-tab" data-area="cirugia" role="tab" aria-selected="false">Cirugía General</button>
+          <button class="cat-tab" data-area="terapia" role="tab" aria-selected="false">Terapia</button>
+          <button class="cat-tab" data-area="obstetricia" role="tab" aria-selected="false">Obstetricia</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid de productos -->
+    <div class="cat-grid" id="cat-grid">
+
+      <!-- ===== BIOGRAFT ===== -->
+      <article class="prod-card reveal" data-brand="biograft" data-area="implantes" data-id="0" tabindex="0" role="button" aria-label="Ver detalles de Chips Biograft">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80"
+               alt="Implante de chips óseos Biograft"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biograft">Biograft</span>
+            <span class="area-badge">Implantes Biológicos</span>
+          </div>
+          <h3 class="prod-name">Chips Biograft®</h3>
+          <p class="prod-desc">Implante derivado de tejido óseo humano procesado, osteoconductor, estéril y apirogénico. Disponible en variantes trabeculares y esponjosas.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Chips Biograft">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biograft" data-area="implantes" data-id="1" tabindex="0" role="button" aria-label="Ver detalles de Tendón Procesado Biograft">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=600&q=80"
+               alt="Reconstrucción de ligamentos con tendón procesado"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biograft">Biograft</span>
+            <span class="area-badge">Implantes Biológicos</span>
+          </div>
+          <h3 class="prod-name">Tendón Procesado Biograft®</h3>
+          <p class="prod-desc">Implante de tejido tendinoso humano para reconstrucción de ligamentos. Estéril, apirogénico y esterilizado por radiación gamma.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Tendón Procesado">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- ===== DAONSA ===== -->
+      <article class="prod-card reveal" data-brand="daonsa" data-area="hombro" data-id="2" tabindex="0" role="button" aria-label="Ver detalles de Dao Sling">
+        <div class="prod-card-media">
+          <img src="https://daonsa.com/wp-content/uploads/DAO-@05x-1.jpg"
+               alt="Dao Sling inmovilizador de hombro"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Hombro</span>
+          </div>
+          <h3 class="prod-name">Dao Sling</h3>
+          <p class="prod-desc">Inmovilizador posoperatorio para hombro con 15° de abducción. Para reparación de manguito rotador, Bankart y esguinces.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Dao Sling">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="hombro" data-id="3" tabindex="0" role="button" aria-label="Ver detalles de Inmovilizador de Hombro">
+        <div class="prod-card-media">
+          <img src="https://daonsa.com/wp-content/uploads/INH-P-Inmovilizador-de-Hombro-Pediatrico-2.jpg"
+               alt="Inmovilizador de hombro Daonsa"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Hombro</span>
+          </div>
+          <h3 class="prod-name">Inmovilizador de Hombro</h3>
+          <p class="prod-desc">Inmoviliza el hombro después de procedimientos quirúrgicos o luxación. Ajustable, cómodo y fácil de usar en ambos lados.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Inmovilizador de Hombro">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="rodilla" data-id="4" tabindex="0" role="button" aria-label="Ver detalles de Inmovilizador de Rodilla Tripanel">
+        <div class="prod-card-media">
+          <img src="https://daonsa.com/wp-content/uploads/IRT-P-@05x-6.jpg"
+               alt="Inmovilizador de rodilla tripanel Daonsa"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">Inmovilizador de Rodilla Tripanel</h3>
+          <p class="prod-desc">Inmoviliza y da soporte a la rodilla en tratamientos pre y posoperatorios. Paneles laterales ajustables con varillas de estabilidad.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Inmovilizador de Rodilla Tripanel">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="rodilla" data-id="5" tabindex="0" role="button" aria-label="Ver detalles de Rodillera Posoperatoria">
+        <div class="prod-card-media">
+          <img src="https://daonsa.com/wp-content/uploads/RPOS@05x-1.jpg"
+               alt="Rodillera posoperatoria Daonsa"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">Rodillera Posoperatoria</h3>
+          <p class="prod-desc">Rodillera articulada con rango de movimiento controlado para cirugías de LCA, LCP, LMC y LCL. Barras telescópicas y ajuste con velcro.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Rodillera Posoperatoria">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="tobillo" data-id="6" tabindex="0" role="button" aria-label="Ver detalles de Rover Walker">
+        <div class="prod-card-media">
+          <img src="https://daonsa.com/wp-content/uploads/rwal_1.jpg"
+               alt="Rover Walker bota ortopédica Daonsa"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Tobillo &amp; Pie</span>
+          </div>
+          <h3 class="prod-name">Rover Walker</h3>
+          <p class="prod-desc">Bota ortopédica para fracturas estables, esguinces e inestabilidades de tobillo. Sistema de cámaras de aire para soporte y estabilidad.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Rover Walker">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="muneca" data-id="7" tabindex="0" role="button" aria-label="Ver detalles de Férula para Muñeca y Antebrazo">
+        <div class="prod-card-media">
+          <img src="https://daonsa.com/wp-content/uploads/FMA-Ferula01.jpg"
+               alt="Férula para muñeca y antebrazo Daonsa"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Muñeca &amp; Codo</span>
+          </div>
+          <h3 class="prod-name">Férula para Muñeca y Antebrazo</h3>
+          <p class="prod-desc">Tela negra transpirable con acolchado de poliuretano para estabilización de muñeca. Incorpora varilla metálica y dos plásticas.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Férula para Muñeca">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="terapia" data-id="8" tabindex="0" role="button" aria-label="Ver detalles de Ice Pads">
+        <div class="prod-card-media">
+          <img src="https://daonsa.com/wp-content/uploads/pad-rodilla.jpg"
+               alt="Ice Pads compresión fría Daonsa"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Terapia</span>
+          </div>
+          <h3 class="prod-name">Ice Pads</h3>
+          <p class="prod-desc">Almohadillas de compresión fría que se ajustan cómodamente a la articulación. Disponibles para rodilla, hombro y tobillo.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Ice Pads">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="muneca" data-id="9" tabindex="0" role="button" aria-label="Ver detalles de Soporte Posoperatorio para Codo">
+        <div class="prod-card-media">
+          <img src="https://daonsa.com/wp-content/uploads/POC-1.jpg"
+               alt="Soporte posoperatorio para codo Daonsa"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Muñeca &amp; Codo</span>
+          </div>
+          <h3 class="prod-name">Soporte Posoperatorio para Codo</h3>
+          <p class="prod-desc">Controla el rango de movimiento de flexión y extensión. Para reconstrucción de codo, tendones y fracturas. Pre y posoperatorio.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Soporte Posoperatorio para Codo">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="terapia" data-id="10" tabindex="0" role="button" aria-label="Ver detalles de Sistema de Enfriamiento">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?w=600&q=80"
+               alt="Sistema de crioterapia portátil"
+               loading="lazy"
+               onerror="this.src='https://daonsa.com/wp-content/uploads/pad-rodilla.jpg'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Terapia</span>
+          </div>
+          <h3 class="prod-name">Sistema de Enfriamiento</h3>
+          <p class="prod-desc">Crioterapia controlada portátil para aliviar dolor y edema posoperatorio. Bomba sumergible con termómetro integrado para control de temperatura.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Sistema de Enfriamiento">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- ===== MEDLINE ===== -->
+      <article class="prod-card reveal" data-brand="medline" data-area="cirugia" data-id="11" tabindex="0" role="button" aria-label="Ver detalles de Guantes SensiCare PI">
+        <div class="prod-card-media">
+          <img src="https://media.assets.medline.eu/www/media/catalog/product/cache/8b3f2670f4e3f36326a29b52a0eab099/m/a/main_SensicarePIOrthoMicro_USE_4__8_8.jpeg"
+               alt="Guantes SensiCare PI Medline"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Cirugía General</span>
+          </div>
+          <h3 class="prod-name">Guantes Quirúrgicos SensiCare® PI con Aloe</h3>
+          <p class="prod-desc">Guantes estériles de poliisopreno sintético Isolex® con aloe vera liofilizado. Sin látex, sin polvo. Inspeccionados al 100%.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Guantes SensiCare PI">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="cirugia" data-id="12" tabindex="0" role="button" aria-label="Ver detalles de Paquete Universal II Sirus">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&q=80"
+               alt="Sala de operaciones cirugía general"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Cirugía General</span>
+          </div>
+          <h3 class="prod-name">Paquete Universal II Sirus®</h3>
+          <p class="prod-desc">Paquete quirúrgico estéril completo para procedimientos generales. Batas, cubiertas de mesa, campos adhesivos y bolsa de suturas.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Universal II Sirus">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="cirugia" data-id="13" tabindex="0" role="button" aria-label="Ver detalles de Paquete Cirugía Menor">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?w=600&q=80"
+               alt="Cirugía menor campo estéril"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Cirugía General</span>
+          </div>
+          <h3 class="prod-name">Paquete Integral de Cirugía Menor</h3>
+          <p class="prod-desc">Paquete estéril para cirugías menores con batas quirúrgicas, campos, gasas, hojas de bisturí y lápiz de electrocirugía.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Cirugía Menor">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="cirugia" data-id="14" tabindex="0" role="button" aria-label="Ver detalles de Paquete Cirugía Mayor">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&q=80"
+               alt="Cirugía mayor equipo quirúrgico completo"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Cirugía General</span>
+          </div>
+          <h3 class="prod-name">Paquete Integral de Cirugía Mayor</h3>
+          <p class="prod-desc">Solución completa para procedimientos complejos: batas reforzadas, campos absorbentes, compresas, bisturís y control de agujas.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Cirugía Mayor">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="rodilla" data-id="15" tabindex="0" role="button" aria-label="Ver detalles de Paquete Artroscopía Rodilla">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80"
+               alt="Artroscopía de rodilla quirófano"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">Paquete de Artroscopía de Rodilla</h3>
+          <p class="prod-desc">Paquete integral para artroscopía de rodilla con campos especializados, tubo de succión, gasas, batas y estoquinete impermeable.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Artroscopía Rodilla">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="hombro" data-id="16" tabindex="0" role="button" aria-label="Ver detalles de Paquete Artroscopía Hombro">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&q=80"
+               alt="Artroscopía de hombro cirugía ortopédica"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Hombro</span>
+          </div>
+          <h3 class="prod-name">Paquete de Artroscopía de Hombro</h3>
+          <p class="prod-desc">Paquete especializado para artroscopía de hombro con campo para división cuerpo-hombro, campo con bolsa colectora y agujas espinales.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Artroscopía Hombro">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="rodilla" data-id="17" tabindex="0" role="button" aria-label="Ver detalles de Paquete Artroscopía I Deluxe Sirus">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80"
+               alt="Artroscopía quirúrgica con equipo Sirus premium"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">Paquete de Artroscopía I Deluxe Sirus®</h3>
+          <p class="prod-desc">Versión deluxe para artroscopía con dos batas Sirus, campos en "U" con adhesivo y campo con bolsa colectora de fluidos 229×315 cm.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Artroscopía I Deluxe">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="hombro" data-id="18" tabindex="0" role="button" aria-label="Ver detalles de Paquete Hombro II Sirus">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600&q=80"
+               alt="Cirugía de hombro abierta equipo estéril"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Hombro</span>
+          </div>
+          <h3 class="prod-name">Paquete de Hombro II Sirus®</h3>
+          <p class="prod-desc">Paquete especializado para cirugía de hombro con campo de 100"×66" con incisión y bolsa colectora, y campo para el cuerpo de 77"×114".</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Hombro II Sirus">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="obstetricia" data-id="19" tabindex="0" role="button" aria-label="Ver detalles de Paquete Cesárea Básico">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80"
+               alt="Sala de quirófano para cesárea"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Obstetricia</span>
+          </div>
+          <h3 class="prod-name">Paquete de Cesárea Básico</h3>
+          <p class="prod-desc">Todo lo necesario para cesárea: campo con bolsa y perforación, gasas, batas, manta para bebé, gorro y contenedor-contador de agujas.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Cesárea Básico">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="obstetricia" data-id="20" tabindex="0" role="button" aria-label="Ver detalles de Paquete Cesárea con Recepción de Bebé">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&q=80"
+               alt="Recepción de recién nacido en quirófano"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Obstetricia</span>
+          </div>
+          <h3 class="prod-name">Paquete Cesárea con Recepción de Bebé</h3>
+          <p class="prod-desc">Paquete completo para cesárea con kit adicional para atención inmediata del recién nacido: manta calefactora, gorro neonatal y almohadilla absorbente.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Cesárea con Recepción de Bebé">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="medline" data-area="obstetricia" data-id="21" tabindex="0" role="button" aria-label="Ver detalles de Paquete Parto y Alumbramiento">
+        <div class="prod-card-media">
+          <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&q=80"
+               alt="Sala de partos atención obstétrica"
+               loading="lazy"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge medline">Medline</span>
+            <span class="area-badge">Obstetricia</span>
+          </div>
+          <h3 class="prod-name">Paquete Parto y Alumbramiento</h3>
+          <p class="prod-desc">Paquete estéril completo para parto vaginal y alumbramiento: campo bajo-glúteo, campos para piernas, compresas, tijeras de cordón y pinza umbilical.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Paquete Parto y Alumbramiento">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- ===== BIOTEK ===== -->
+      <article class="prod-card reveal" data-brand="biotek" data-area="hombro" data-id="22" tabindex="0" role="button" aria-label="Ver detalles de BIO-VIM">
+        <div class="prod-card-media">
+          <img src="assets/biotek/biovim.jpg" alt="Ancla bioabsorbible BIO-VIM para manguito rotador" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Hombro</span>
+          </div>
+          <h3 class="prod-name">BIO-VIM®</h3>
+          <p class="prod-desc">Ancla bioabsorbible (70% PLDLLA + 30% β-TCP) para reparación del manguito rotador. Variante LRP con punta PEEK para técnica knotless Cross Bridge.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de BIO-VIM">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biotek" data-area="rodilla" data-id="23" tabindex="0" role="button" aria-label="Ver detalles de Sistema LCA BUTTONFIX">
+        <div class="prod-card-media">
+          <img src="assets/biotek/buttonfix-lca.jpg" alt="Sistema BUTTONFIX para reconstrucción de LCA" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">Sistema LCA — BUTTONFIX®</h3>
+          <p class="prod-desc">Sistema completo para reconstrucción artroscópica de LCA/LCP: botón de fijación femoral BUTTONFIX®, lazo ajustable BT-FIX y placa tibial SMARTFIX™. Técnica S.T.A.R.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Sistema LCA BUTTONFIX">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biotek" data-area="hombro" data-id="24" tabindex="0" role="button" aria-label="Ver detalles de FIBERKNOT">
+        <div class="prod-card-media">
+          <img src="assets/biotek/fiberknot.jpg" alt="Anclas de ligamento blando FIBERKNOT para hombro" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Hombro</span>
+          </div>
+          <h3 class="prod-name">FIBERKNOT®</h3>
+          <p class="prod-desc">Anclas de ligamento blando (UHMWPE) con orificio piloto reducido. Ø1.5/1.8mm para inestabilidad de hombro (SLAP, Bankart); Ø2.9mm para manguito rotador.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de FIBERKNOT">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biotek" data-area="rodilla" data-id="25" tabindex="0" role="button" aria-label="Ver detalles de BIOCINCH">
+        <div class="prod-card-media">
+          <img src="assets/biotek/biocinch.jpg" alt="Kit BIOCINCH para reparación artroscópica de menisco" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">BIOCINCH®</h3>
+          <p class="prod-desc">Kit para reparación artroscópica de menisco con técnica dentro-fuera (inside-out). Incluye guías de sutura doble y mono lumen en múltiples ángulos.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de BIOCINCH">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biotek" data-area="hombro" data-id="26" tabindex="0" role="button" aria-label="Ver detalles de VIMFIX-BT">
+        <div class="prod-card-media">
+          <img src="assets/biotek/vimfix-bt.jpg" alt="Ancla VIMFIX-BT para tenodesis proximal de bíceps" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Hombro</span>
+          </div>
+          <h3 class="prod-name">VIMFIX®-BT</h3>
+          <p class="prod-desc">Ancla PEEK sin nudo para tenodesis proximal de bíceps artroscópica. Punta PEEK guía el tendón al fondo del socket sin whipstitch. Disponible en Ø5–8mm.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de VIMFIX-BT">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biotek" data-area="rodilla" data-id="27" tabindex="0" role="button" aria-label="Ver detalles de OnButton CL">
+        <div class="prod-card-media">
+          <img src="assets/biotek/onbutton-cl.jpg" alt="OnButton CL botón de fijación femoral para LCA" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">OnButton CL®</h3>
+          <p class="prod-desc">Botón de fijación femoral con lazo continuo knotless para reconstrucción de ligamentos cruzados. UTS probado a 1761N. Procedimiento 100% endoscópico.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de OnButton CL">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biotek" data-area="hombro tobillo" data-id="28" tabindex="0" role="button" aria-label="Ver detalles de BUTTONFIX-F">
+        <div class="prod-card-media">
+          <img src="assets/biotek/buttonfix-f.jpg" alt="BUTTONFIX-F para luxación acromioclavicular y sindesmosis" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Hombro</span>
+            <span class="area-badge">Tobillo &amp; Pie</span>
+          </div>
+          <h3 class="prod-name">BUTTONFIX®-F</h3>
+          <p class="prod-desc">Sistema knotless con lazo para luxación acromioclavicular (AC) y reparación de sindesmosis. Dos botones titanio conectados con BioFiber UHMWPE No.5. UTS 797.2N.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de BUTTONFIX-F">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biotek" data-area="rodilla" data-id="29" tabindex="0" role="button" aria-label="Ver detalles de Biotwin">
+        <div class="prod-card-media">
+          <img src="assets/biotek/biotwin.jpg" alt="Tornillo de interferencia biocompuesto Biotwin para LCA" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">Biotwin™</h3>
+          <p class="prod-desc">Tornillo de interferencia biocompuesto reabsorbible (75% PLDLLA + 25% BCP) para fijación de injerto en reconstrucción ligamentaria. Rosca cónica canalada. Ø7–11mm.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Biotwin">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biotek" data-area="rodilla" data-id="30" tabindex="0" role="button" aria-label="Ver detalles de BioFiber">
+        <div class="prod-card-media">
+          <img src="assets/biotek/biofiber.jpg" alt="Suturas y cintas BioFiber para cirugía artroscópica" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biotek">Biotek</span>
+            <span class="area-badge">Rodilla</span>
+          </div>
+          <h3 class="prod-name">BioFiber®</h3>
+          <p class="prod-desc">Línea de suturas y cintas de fibra de alta resistencia para aumentación de injerto en cirugía artroscópica. Disponible en fibra, cinta Tape y lazo (loop) en varios calibres.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de BioFiber">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- empty state -->
+      <div class="cat-empty" id="cat-empty" style="display:none">
+        No hay productos disponibles para esta combinación de filtros.
+      </div>
+
+    </div><!-- /cat-grid -->
+  </div>
+</section>
+
+<!-- ============ CONTACTO CTA ============ -->
+<section class="contact-cta section" aria-label="Solicitar cotización">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <div class="cta-copy">
+        <span class="eyebrow" style="color:rgba(255,255,255,.6)">¿Listo para cotizar?</span>
+        <h2 class="h-section">Solicita tu cotización<br/>sin compromiso.</h2>
+        <p class="lede">Nuestro equipo responde en menos de 24 horas. Cuéntanos qué necesitas y te orientamos sobre el producto más adecuado para cada procedimiento.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="contacto.html" class="btn btn-primary">
+          Solicitar Cotización
+          <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://wa.me/524448037203?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20productos%20del%20cat%C3%A1logo%20de%20FG%20Artrom%C3%A9dica.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener" class="btn btn-outline-light">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid footer-grid-3">
+      <div class="brand-block">
+        <a href="index.html" class="nav-brand">
+          <img src="assets/logo.jpg" alt="FG Artromédica" class="logo-img" />
+          <span class="brand-name">
+            <b>FG ARTROMEDICA</b>
+            <span>Instrumentación Quirúrgica</span>
+          </span>
+        </a>
+        <p>La salud en movimiento, ArtroMédica te acompaña.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+5214448037203">+52 1 444 803 7203</a></li>
+          <li><a href="tel:+5214774340513">+52 1 477 434 0513</a></li>
+          <li><a href="mailto:Administracion@fg-artromedica.com">Administracion@fg-artromedica.com</a></li>
+          <li>León, Guanajuato · México</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FG ARTROMEDICA. Todos los derechos reservados.</span>
+      <a href="aviso-privacidad.html">Aviso de Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ WhatsApp flotante ============ -->
+<a href="https://wa.me/524448037203?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20de%20FG%20Artrom%C3%A9dica.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F"
+   target="_blank" rel="noopener" class="wa-float" aria-label="Contactar por WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+</a>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" id="modal-close" aria-label="Cerrar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-media" id="modal-media">
+      <div class="modal-media-brand" id="modal-media-brand"></div>
+      <img id="modal-img" src="" alt="" />
+    </div>
+    <div class="modal-content" id="modal-content">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+/* ===== Datos de productos ===== */
+const PRODUCTS = [
+  /* 0 */ {
+    brand: "biograft", name: "Chips Biograft®",
+    subtitle: "Implante derivado de Tejido Óseo Humano",
+    img: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=85",
+    imgContain: false,
+    area: "Implantes Biológicos",
+    servicio: "Cirugía con Implantes Ortopédicos",
+    desc: "Los Chips Biograft® son implantes Clase III derivados de tejido óseo humano procesado. Son osteoconductores, estériles y apirogénicos, compuestos por 70% sales inorgánicas y 30% matriz orgánica (>90% colágena e hidroxiapatita). Disponibles en cuatro variantes según morfología y tamaño de partícula.",
+    variants: [
+      "Chips Granulado Trabecular (≤4 mm) — 5, 10, 15, 30, 60 cc · Cód. 2210000X",
+      "Chips Cubos Trabecular (4-6 mm) — 5, 10, 15, 20, 30, 60 cc · Cód. 2210020X",
+      "Chips Cubos Esponjoso (4-6 mm) — 5, 10, 15, 20, 30, 60 cc · Cód. 1610020X",
+      "Chips Granulado Esponjoso (≤4 mm) — 5, 10, 15, 20, 30, 60, 90 cc · Cód. 1610000X"
+    ],
+    chars: ["Clase III", "Estéril", "Apirogénico", "R.S. 1374C2005 SSA"],
+    code: "R.S. 1374C2005 SSA"
+  },
+  /* 1 */ {
+    brand: "biograft", name: "Tendón Procesado Biograft®",
+    subtitle: "Implante derivado de tejido tendinoso humano",
+    img: "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=800&q=85",
+    imgContain: false,
+    area: "Implantes Biológicos",
+    servicio: "Cirugía con Implantes Ortopédicos",
+    desc: "El Tendón Procesado Biograft® es un dispositivo médico Clase III derivado de tejido tendinoso humano, estéril y apirogénico. Compuesto por 90% colágena y 10% elastina. Esterilizado mediante radiación gamma (mín. 50 kGy) y Proceso Clearant®. Producto congelado con vida de anaquel de 48 meses a -40°C.",
+    variants: [
+      "Tendón tibial anterior / posterior",
+      "Tendón de Aquiles con calcáneo T ≥180 mm",
+      "Hemitendón de Aquiles con calcáneo BO modelado",
+      "Tendón de Aquiles sin calcáneo T ≥180 mm",
+      "Tendón Hemipatelar (HTH) / con cuádriceps",
+      "Segmento tendón Patelar con o sin cuádriceps",
+      "Tendón Semitendinoso / Gracilis / Peroneal largo / corto",
+      "Tendón Flexor común de los dedos / Flexor Halux",
+      "Variantes largas ≥260 mm × ≥8 mm disponibles en varios tipos"
+    ],
+    chars: ["Clase III", "Estéril", "Sin látex", "Criopreservado −40°C"],
+    code: ""
+  },
+  /* 2 */ {
+    brand: "daonsa", name: "Dao Sling",
+    subtitle: "Inmovilizador posoperatorio de hombro",
+    img: "https://daonsa.com/wp-content/uploads/DAO-@05x-1.jpg",
+    imgContain: true,
+    area: "Hombro",
+    servicio: "Artroscopia de Hombro",
+    desc: "Provee inmovilización posoperatoria con 15 grados de abducción. Ideal para reparación del manguito rotador, desinserción capsular, reparaciones de Bankart, dislocaciones/subluxaciones glenohumerales, esguinces y reparaciones de tejido blando. La correa de rotación se engancha al Dao Sling evitando la rotación interna al mantener el brazo del paciente en una posición neutral y cómoda.",
+    variants: [],
+    chars: ["Talla Universal", "Miembro Superior", "Posoperatorio"],
+    code: "SKU: DAO2"
+  },
+  /* 3 */ {
+    brand: "daonsa", name: "Inmovilizador de Hombro",
+    subtitle: "Inmovilizador ajustable para hombro",
+    img: "https://daonsa.com/wp-content/uploads/INH-P-Inmovilizador-de-Hombro-Pediatrico-2.jpg",
+    imgContain: true,
+    area: "Hombro",
+    servicio: "Artroscopia de Hombro",
+    desc: "Inmoviliza el hombro después de un procedimiento quirúrgico o luxación. Su diseño es ajustable a diferentes tamaños y se puede utilizar en ambos lados. Elaborado de un material suave, extremadamente cómodo y fácil de usar.",
+    variants: [],
+    chars: ["Talla Universal", "Bilateral", "Posoperatorio"],
+    code: "SKU: INH"
+  },
+  /* 4 */ {
+    brand: "daonsa", name: "Inmovilizador de Rodilla Tripanel",
+    subtitle: "Ortesis de rodilla pre/posoperatoria",
+    img: "https://daonsa.com/wp-content/uploads/IRT-P-@05x-6.jpg",
+    imgContain: true,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Inmoviliza y da soporte a la rodilla. Indicado para tratamientos pre y posoperatorios. Su diseño contiene paneles laterales que permiten ajustarse a diferentes anchos de pierna. Posee varillas laterales y mediales para incrementar la estabilidad.",
+    variants: [
+      "Talla 12\" — uso estándar",
+      "Talla 14\" — uso estándar",
+      "Tallas 8\" y 10\" — disponibles bajo pedido"
+    ],
+    chars: ["Pre y posoperatorio", "Ajuste multipanel", "Varillas de estabilidad"],
+    code: "SKU: IRT-P"
+  },
+  /* 5 */ {
+    brand: "daonsa", name: "Rodillera Posoperatoria",
+    subtitle: "Ortesis articulada con rango de movimiento controlado",
+    img: "https://daonsa.com/wp-content/uploads/RPOS@05x-1.jpg",
+    imgContain: true,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Indicada para uso posterior a cirugías de ligamentos, ofreciendo rango de movimiento controlado y capacidades de bloqueo. Indicaciones: LCA, LCP, LMC y LCL; reparación de meniscos, realineación rotuliana, condroplastia regenerativa, fracturas femorales estables, reemplazo total de rodilla y osteotomías tibiales y femorales. Barras laterales telescópicas integradas con correas de velcro.",
+    variants: [],
+    chars: ["Talla Universal", "Rango de mov. ajustable", "Bloqueo flex/ext", "Barras telescópicas"],
+    code: "SKU: RPOS"
+  },
+  /* 6 */ {
+    brand: "daonsa", name: "Rover Walker",
+    subtitle: "Bota ortopédica para tobillo y pie",
+    img: "https://daonsa.com/wp-content/uploads/rwal_1.jpg",
+    imgContain: true,
+    area: "Tobillo & Pie",
+    servicio: "Artroscopia de Tobillo",
+    desc: "Indicado para fracturas estables, esguinces agudos y moderados, inestabilidades crónicas o para dar soporte al usuario después de retirar el yeso en tobillo. Cuenta con un sistema de dos cámaras de aire de durabilidad excepcional y válvulas de escape con un solo botón. Suela antiderrapante con forma más curva y mayores canales de agarre.",
+    variants: [
+      "Hombre — XCH: 1-4.5 · CH: 4-6.5 · M: 6-10 · G: 7-12 · XG: 10.5-13.5",
+      "Mujer — XCH: 2.5-6 · CH: 4.5-6 · M: 5.5-8 · G: 8.5-13.5 · XG: 5-12-15"
+    ],
+    chars: ["Sistema de aire dual", "Suela antiderrapante", "Miembro Inferior"],
+    code: "SKU: RWAL/RVBA"
+  },
+  /* 7 */ {
+    brand: "daonsa", name: "Férula para Muñeca y Antebrazo",
+    subtitle: "Inmovilización y soporte de muñeca",
+    img: "https://daonsa.com/wp-content/uploads/FMA-Ferula01.jpg",
+    imgContain: true,
+    area: "Muñeca & Codo",
+    servicio: "Artroscopia de Muñeca",
+    desc: "Férula para muñeca fabricada con tela negra transpirable de poliéster con acolchado de espuma de poliuretano. Indicada como auxiliar terapéutico para la estabilización de la muñeca. Brinda soporte, estabilización e inmovilización parcial de la muñeca. Incorpora una varilla metálica y dos plásticas para mayor soporte.",
+    variants: [
+      "Universal — Longitud 10\"",
+      "Izquierdo / Derecho",
+      "Talla XCH disponible bajo pedido"
+    ],
+    chars: ["Tela transpirable", "Varilla metálica", "Miembro Superior"],
+    code: "SKU: FMA"
+  },
+  /* 8 */ {
+    brand: "daonsa", name: "Ice Pads",
+    subtitle: "Almohadillas de compresión fría",
+    img: "https://daonsa.com/wp-content/uploads/pad-rodilla.jpg",
+    imgContain: true,
+    area: "Terapia",
+    servicio: "Otro procedimiento",
+    desc: "Diseñados para ajustarse a la articulación de una manera fácil y confortable. Proveen excelente compresión gracias a sus correas elásticas. Su utilización elimina el uso de vendajes para sostener las bolsas con hielo o compresas frías.",
+    variants: [
+      "Ice Pad de Rodilla",
+      "Ice Pad de Hombro",
+      "Ice Pad de Tobillo"
+    ],
+    chars: ["3 variantes anatómicas", "Compresión elástica", "Terapia fría"],
+    code: "SKU: PAD"
+  },
+  /* 9 */ {
+    brand: "daonsa", name: "Soporte Posoperatorio para Codo",
+    subtitle: "Ortesis de codo con control de rango de movimiento",
+    img: "https://daonsa.com/wp-content/uploads/POC-1.jpg",
+    imgContain: true,
+    area: "Muñeca & Codo",
+    servicio: "Otro procedimiento",
+    desc: "Controla el rango de movimiento de flexión y extensión. Para reconstrucción del codo, ligamentos, reparación de tendones, fracturas y reparación de bíceps. Puede usarse de forma pre y posoperatoria. Aplicación fácil, sin usar herramientas. Diseño más ligero con doble sistema de bloqueo fácil de usar, agarre más suave y almohadillas ergonómicas.",
+    variants: [],
+    chars: ["Universal", "Izquierdo / Derecho", "Pre y posoperatorio", "Doble bloqueo"],
+    code: "SKU: POC"
+  },
+  /* 10 */ {
+    brand: "daonsa", name: "Sistema de Enfriamiento",
+    subtitle: "Crioterapia portátil controlada",
+    img: "https://images.unsplash.com/photo-1612531386530-97286d97c2d2?w=800&q=85",
+    imgContain: false,
+    area: "Terapia",
+    servicio: "Otro procedimiento",
+    desc: "Proporciona terapia fría controlada que ayuda a aliviar el dolor y el edema posoperatorio. Además, puede utilizarse después de un trauma, antes y después de sesiones de terapia física y para necesidades en el área deportiva. Sistema de fácil manejo y portátil para usarse en hospitales, clínicas y en casa. Contiene una bomba sumergible y un termómetro para el control de la temperatura.",
+    variants: [],
+    chars: ["Portátil", "Termómetro integrado", "Bomba sumergible", "Uso clínico y domiciliario"],
+    code: "SKU: POL"
+  },
+  /* 11 */ {
+    brand: "medline", name: "Guantes Quirúrgicos SensiCare® PI con Aloe",
+    subtitle: "Guantes de poliisopreno sintético estériles",
+    img: "https://media.assets.medline.eu/www/media/catalog/product/cache/8b3f2670f4e3f36326a29b52a0eab099/m/a/main_SensicarePIOrthoMicro_USE_4__8_8.jpeg",
+    imgContain: true,
+    area: "Cirugía General",
+    servicio: "Otro procedimiento",
+    desc: "Fabricados con Isolex®, poliisopreno sintético patentado de Medline. Contienen aloe vera puro liofilizado para hidratar las manos. Los guantes son inspeccionados al 100% en busca de perforaciones, roturas y defectos visuales. NCA de 0.65%, 57% más estricto que FDA. No están hechos con caucho de látex natural.",
+    variants: [
+      "MSG1055 — Talla 5.5",
+      "MSG1060 — Talla 6.0",
+      "MSG1065 — Talla 6.5",
+      "MSG1070 — Talla 7.0",
+      "MSG1075 — Talla 7.5",
+      "MSG1080 — Talla 8.0",
+      "MSG1085 — Talla 8.5",
+      "MSG1090 — Talla 9.0",
+      "MSG1095 — Talla 9.5"
+    ],
+    chars: ["Sin látex", "Sin polvo", "Estéril", "25 pares/caja · 100 pares/cartón"],
+    code: "SKU: MSG105X – MSG109X"
+  },
+  /* 12 */ {
+    brand: "medline", name: "Paquete Universal II Sirus®",
+    subtitle: "Paquete quirúrgico estéril para procedimientos generales",
+    img: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=85",
+    imgContain: false,
+    area: "Cirugía General",
+    servicio: "Otro procedimiento",
+    desc: "Paquete de ropa desechable estéril para procedimientos quirúrgicos generales. Diseñado para proveer todos los componentes necesarios para mantener un campo estéril seguro.",
+    variants: [
+      "1 Cubierta mesa polireforzada 50\" × 90\"",
+      "1 Bata Sirus® no reforzada talla L con toalla",
+      "1 Cubierta mesa de mayo 24\" × 53\"",
+      "1 Bata Sirus® polireforzada talla L",
+      "1 Bolsa de papel para suturas",
+      "2 Campos quirúrgicos laterales 35\" × 79\" con adhesivo",
+      "1 Campo superior 102\" × 53\" con adhesivo",
+      "1 Campo inferior 70\" × 75\" con adhesivo"
+    ],
+    chars: ["Estéril", "Desechable", "Látex free"],
+    code: "DYNJP1055S"
+  },
+  /* 13 */ {
+    brand: "medline", name: "Paquete Integral de Cirugía Menor",
+    subtitle: "Paquete estéril completo para cirugías menores",
+    img: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=85",
+    imgContain: false,
+    area: "Cirugía General",
+    servicio: "Otro procedimiento",
+    desc: "Paquete integral estéril para procedimientos de cirugía menor, con todos los elementos necesarios para un campo quirúrgico seguro.",
+    variants: [
+      "1 Campo en \"U\" con segmento absorbente antiderrapante con velcro",
+      "1 Campo superior con refuerzo absorbente y velcro",
+      "1 Bata quirúrgica grande con toalla absorbente (instrumentista)",
+      "2 Batas quirúrgicas extragrandes con toallas absorbentes (médicos)",
+      "1 Bolsa para suturas · 1 Budinera 32oz",
+      "5 Compresas con raytex 18\"×18\"",
+      "1 Cubierta mesa de mayo · 1 Cubierta mesa riñón 50\"×90\"",
+      "2 Cubiertas manerales lámpara quirúrgica morados",
+      "10 Gasas 4\"×4\" con 16 pliegos y raytex",
+      "2 Hojas de bisturí no. 15 · 1 Lápiz de electrocirugía"
+    ],
+    chars: ["Estéril", "Desechable", "Látex free"],
+    code: "DYNJ16982B"
+  },
+  /* 14 */ {
+    brand: "medline", name: "Paquete Integral de Cirugía Mayor",
+    subtitle: "Solución completa para procedimientos complejos",
+    img: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=85",
+    imgContain: false,
+    area: "Cirugía General",
+    servicio: "Otro procedimiento",
+    desc: "Paquete integral estéril para cirugías mayores. Incluye todos los elementos de campo y ropa quirúrgica necesarios para procedimientos de alta complejidad.",
+    variants: [
+      "1 Bata quirúrgica grande con toalla azul (instrumentista)",
+      "3 Batas quirúrgicas extragrandes con toallas azules (médicos)",
+      "1 Bolsa para suturas · 1 Budinera 32oz",
+      "1 Campo en \"U\" absorbente antiderrapante con velcro",
+      "1 Campo superior con refuerzo absorbente y velcro",
+      "1 Cánula yankahuer con oliva · 1 Charola rectangular",
+      "10 Compresas prelavadas 18\"×18\" (46×46 cm)",
+      "1 Contenedor-contador agujas con imán y esponja",
+      "1 Cubierta mesa mayo · 1 Cubierta mesa riñón 79\"×110\"",
+      "2 Cubiertas manerales lámpara quirúrgica moradas",
+      "10 Gasas 4×4 (10×10 cm) 16 pliegos raytex",
+      "Hojas bisturí #15, #20, #23 · 1 Jeringa asepto",
+      "1 Lápiz electrocirugía con funda · 1 Lija limpieza electrobisturí",
+      "1 Riñón 700cc · 4 Toallas azules · 1 Tubo succión 0.25\"×144\""
+    ],
+    chars: ["Estéril", "Desechable", "Látex free"],
+    code: "DYNJ16793C"
+  },
+  /* 15 */ {
+    brand: "medline", name: "Paquete de Artroscopía de Rodilla",
+    subtitle: "Paquete integral para artroscopía de rodilla",
+    img: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=85",
+    imgContain: false,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Paquete integral estéril con todos los componentes necesarios para un procedimiento de artroscopía de rodilla seguro y eficiente.",
+    variants: [
+      "1 Paño de cobertura con bolsa 114\"×122\"×90\"",
+      "1 Paño plástico ducha con adhesivo 54\"×76\"",
+      "1 Combine dressing 8\"×10\" · 1 Xeroform dressing 1\"×8\"",
+      "10 Gasas 12 capas 4\"×4\" · 10 Gasas 16 capas 4\"×4\" raytex",
+      "2 Batas prevention plus XL · 1 Bata Sirus® XL",
+      "1 Cubierta soporte mesa mayo",
+      "1 Aguja 18g×1.5\" · 1 Aguja espinal 18g×3.5\" · 1 Aguja 25g×1.5\"",
+      "1 Espuma/contador magnético agujas 20 ct",
+      "1 Marcador piel, regla y etiquetas",
+      "1 Estoquinete impermeable 12\"×48\"",
+      "1 Jeringa 10ml · 1 Jeringa 20ml · 1 Jeringa 60ml",
+      "2 Tubos succión 0.25\"×144\" · 1 Cubierta mesa 50\"×90\"",
+      "10 Toallas azules · 1 Relleno cubierta inferior 6\"×144\""
+    ],
+    chars: ["Estéril", "Desechable", "Artroscopía especializada"],
+    code: "DYNJS0810"
+  },
+  /* 16 */ {
+    brand: "medline", name: "Paquete de Artroscopía de Hombro",
+    subtitle: "Paquete integral para artroscopía de hombro",
+    img: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=800&q=85",
+    imgContain: false,
+    area: "Hombro",
+    servicio: "Artroscopia de Hombro",
+    desc: "Paquete integral estéril especializado para procedimientos de artroscopía de hombro, con campo anatómico específico para la región del hombro.",
+    variants: [
+      "1 Vendaje coflex 4\"(10cm)",
+      "1 Bisturí no.11 · 1 Connector de tubo recto",
+      "1 Campo división cuerpo y hombro",
+      "1 Campo para hombro con bolsa",
+      "1 Campo U plástico con cinta 54\"×76\"",
+      "2 Cubierta combinada 8\"×10\"",
+      "5 Gasas 4\"×4\" 12 capas · 10 Gasas 4\"×4\" 16 capas raytex",
+      "2 Batas prevention plus XL",
+      "1 Bata Sirus® no reforzada XL con toalla absorbente",
+      "1 Cubierta mesa mayo",
+      "1 Aguja espinal 18g×3.5\" · 1 Espuma/contador magnético 20u",
+      "1 Estoquinete impermeable 12\"×48\"",
+      "1 Jeringa 35ml · 1 Jeringa 60ml",
+      "1 Cubierta mesa 50\"×90\" · 2 Tubos succión 0.25\"×144\"",
+      "8 Toallas azules"
+    ],
+    chars: ["Estéril", "Desechable", "Artroscopía especializada"],
+    code: "DYNJS0841"
+  },
+  /* 17 */ {
+    brand: "medline", name: "Paquete de Artroscopía I Deluxe Sirus®",
+    subtitle: "Versión deluxe para artroscopía",
+    img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=85",
+    imgContain: false,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Paquete de artroscopía versión deluxe con componentes Sirus® de mayor especificación. Incluye campo con bolsa colectora de fluidos de gran tamaño para máxima cobertura.",
+    variants: [
+      "1 Cubierta mesa polireforzada 50\"×90\"",
+      "1 Bata Sirus® no reforzada con toalla talla grande",
+      "1 Bata Sirus® polireforzada talla extra grande",
+      "1 Cubierta mesa de mayo 24\"×53\"",
+      "1 Bolsa de papel para suturas",
+      "1 Campo quirúrgico en \"U\" 54\"×76\" con adhesivo",
+      "1 Campo quirúrgico en \"U\" 47\"×51\"",
+      "1 Campo artroscopía con bolsa colectora fluidos 90\"×121\" · fluidos 229×315 cm"
+    ],
+    chars: ["Estéril", "Desechable", "Sirus® Premium"],
+    code: "DYNJP8100S"
+  },
+  /* 18 */ {
+    brand: "medline", name: "Paquete de Hombro II Sirus®",
+    subtitle: "Paquete estéril especializado para cirugía de hombro",
+    img: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&q=85",
+    imgContain: false,
+    area: "Hombro",
+    servicio: "Artroscopia de Hombro",
+    desc: "Paquete quirúrgico estéril diseñado específicamente para procedimientos de cirugía de hombro abierta y artroscópica con campos anatómicos de gran formato.",
+    variants: [
+      "1 Cubierta mesa 50\"×90\" (127×229 cm)",
+      "1 Cubierta mesa mayo 24\"×53\" (61×135 cm)",
+      "1 Bata Sirus® no reforzada con toalla talla grande",
+      "1 Bata Sirus® polireforzada talla XL",
+      "1 Bolsa de papel para suturas",
+      "1 Campo quirúrgico impermeable \"U\" 54\"×76\" con adhesivo",
+      "1 Campo quirúrgico hombro 100\"×66\" con incisión y bolsa colectora",
+      "1 Campo quirúrgico cuerpo 77\"×114\""
+    ],
+    chars: ["Estéril", "Desechable", "Sirus® Premium", "Campo hombro especializado"],
+    code: "DYNJP8410SI"
+  },
+  /* 19 */ {
+    brand: "medline", name: "Paquete de Cesárea Básico",
+    subtitle: "Paquete estéril para procedimientos de cesárea",
+    img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=85",
+    imgContain: false,
+    area: "Obstetricia",
+    servicio: "Otro procedimiento",
+    desc: "Paquete integral estéril con todos los insumos necesarios para un procedimiento de cesárea básico, incluyendo atención del recién nacido.",
+    variants: [
+      "1 Campo con corte en C con bolsa y perforación",
+      "10 Gasas 4×4 con 32 capas opacas a rayos X",
+      "1 Bata quirúrgica Sirus no reforzada talla grande",
+      "2 Batas quirúrgicas Sirus no reforzadas extra grandes",
+      "1 Cubierta mesa 50\"×90\" · 1 Bolsa lateral suturas 6×12",
+      "1 Manta blanca con franjas para bebé 37×28",
+      "1 Tazón plástico graduado 32oz · 1 Pinza cordón umbilical",
+      "1 Gorro para niño · 1 Contenedor-contador agujas 20 cuentas",
+      "15 Esponjas laparotomía 18×36 opacas rayos X prelavadas",
+      "1 Escalpelo #20 y #21 acero inoxidable · 1 Jeringa asepto",
+      "1 Tubo succión 1-4\"×12ft con conector · 1 Perilla azul 2oz"
+    ],
+    chars: ["Estéril", "Desechable", "Obstetricia"],
+    code: "DYNJ37048"
+  },
+  /* 20 */ {
+    brand: "medline", name: "Paquete Cesárea con Recepción de Bebé",
+    subtitle: "Cesárea completa con kit de atención neonatal",
+    img: "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800&q=85",
+    imgContain: false,
+    area: "Obstetricia",
+    servicio: "Otro procedimiento",
+    desc: "Paquete estéril integral para cesárea que incluye todos los elementos del paquete básico más un kit ampliado para la recepción y atención inmediata del recién nacido: manta calorífica, almohadilla absorbente neonatal, gorro de tela y artículos adicionales de cuidado umbilical. Diseñado para equipos que atienden simultáneamente a madre y bebé en quirófano.",
+    variants: [
+      "1 Campo con corte en C con bolsa y perforación",
+      "15 Esponjas laparotomía 18×36 opacas a rayos X prelavadas",
+      "10 Gasas 4×4 con 32 capas opacas a rayos X",
+      "2 Batas quirúrgicas Sirus no reforzadas XL · 1 Bata grande",
+      "1 Cubierta mesa 50\"×90\" · 1 Cubierta mesa mayo",
+      "1 Bolsa para suturas · 1 Budinera 32oz",
+      "1 Manta calorífica para recién nacido",
+      "1 Almohadilla absorbente neonatal",
+      "1 Gorro de tela neonatal · 1 Pinza para cordón umbilical",
+      "1 Contenedor-contador agujas 20 cuentas · 1 Jeringa asepto",
+      "1 Escalpelo #20 · 1 Tubo de succión con conector · 1 Perilla 2oz"
+    ],
+    chars: ["Estéril", "Desechable", "Obstetricia", "Kit neonatal incluido"],
+    code: "DYNJ33686"
+  },
+  /* 21 */ {
+    brand: "medline", name: "Paquete Parto y Alumbramiento",
+    subtitle: "Paquete estéril para parto vaginal",
+    img: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=85",
+    imgContain: false,
+    area: "Obstetricia",
+    servicio: "Otro procedimiento",
+    desc: "Paquete estéril completo para la atención del parto vaginal y el alumbramiento. Incluye los insumos necesarios para mantener un campo estéril seguro durante el nacimiento, la sección del cordón umbilical y la expulsión de la placenta. Apto para uso en sala de labor y sala de parto.",
+    variants: [
+      "1 Campo bajo-glúteo absorbente con refuerzo impermeable",
+      "2 Campos para piernas (drapes) con adhesivo",
+      "1 Paño absorbente de cuerpo",
+      "2 Batas quirúrgicas no reforzadas talla XL",
+      "1 Cubierta mesa mayo · 1 Cubierta mesa 50\"×90\"",
+      "10 Compresas absorbentes 18\"×18\" con raytex",
+      "10 Gasas 4\"×4\" 16 capas con raytex",
+      "1 Tijeras de cordón umbilical estériles",
+      "2 Pinzas de cordón umbilical · 1 Tazón plástico 16oz",
+      "1 Contenedor-contador agujas · 1 Perilla bulbo 2oz",
+      "1 Manta recepción recién nacido · 1 Gorro neonatal"
+    ],
+    chars: ["Estéril", "Desechable", "Obstetricia", "Parto vaginal"],
+    code: "DYNJ08240"
+  },
+  /* 22 */ {
+    brand: "biotek", name: "BIO-VIM®",
+    subtitle: "Ancla bioabsorbible para manguito rotador",
+    img: "assets/biotek/biovim.jpg",
+    imgContain: true,
+    area: "Hombro",
+    servicio: "Artroscopia de Hombro",
+    desc: "Ancla bioabsorbible fabricada con 70% PLDLLA + 30% β-TCP para reparación de primera fila / fila medial en cirugía del manguito rotador. La variante LRP incorpora punta PEEK para técnica knotless Cross Bridge, eliminando la necesidad de anudar. Certificación CE / EU-MDR.",
+    variants: [
+      "BIO-VIM® Ø4.5mm × 16.5mm — cargada con BioFiber · Cód. 10075–10077",
+      "BIO-VIM® Ø5.5mm × 16.5mm — cargada con BioFiber + BioFiber Tape · Cód. 10078–10080",
+      "BIO-VIM® LRP Ø4.75mm × 15mm — punta PEEK knotless · Cód. 10159",
+      "BIO-VIM® LRP Ø5.5mm × 15mm — punta PEEK knotless · Cód. 10160"
+    ],
+    chars: ["70% PLDLLA + 30% β-TCP", "Bioabsorbible", "Knotless (LRP)", "CE / EU-MDR"],
+    code: "Cód. 10075–10080 · 10159–10160"
+  },
+  /* 23 */ {
+    brand: "biotek", name: "Sistema LCA — BUTTONFIX®",
+    subtitle: "Sistema completo para reconstrucción de ligamento cruzado anterior",
+    img: "assets/biotek/buttonfix-lca.jpg",
+    imgContain: true,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Sistema integral para reconstrucción artroscópica de LCA y LCP. BUTTONFIX® es el botón de fijación cortical femoral con lazo ajustable. BT-FIX es el lazo de fibra ajustable para fijación con botón SMARTFIX™ tibial. El sistema MR-FIX ofrece un botón redondo cónico como alternativa de fijación. Técnica S.T.A.R. (Suture Tape Augmentation Reconstruction). EU-MDR.",
+    variants: [
+      "BUTTONFIX® con lazo ajustable · Cód. BAK-7195",
+      "BUTTONFIX® con lazo + Fiber Tape Size 2 · Cód. 10447",
+      "BT-FIX Adjustable Fiber Loop · Cód. 10049",
+      "SMARTFIX™ Tibial Base Plate, titanio M/L · Cód. BAK-7221S / BAK-7222S",
+      "SMARTFIX™ Tibial Base Plate, PEEK M/L · Cód. 10542 / 10543",
+      "MR-FIX Botón redondo cónico, titanio · Cód. 10119",
+      "MR-FIX Botón redondo cónico, PEEK · Cód. 10520"
+    ],
+    chars: ["Fijación cortical", "Knotless", "Técnica S.T.A.R.", "EU-MDR"],
+    code: "Cód. BAK-7195 · 10049 · BAK-7221S"
+  },
+  /* 24 */ {
+    brand: "biotek", name: "FIBERKNOT®",
+    subtitle: "Anclas de ligamento blando para hombro",
+    img: "assets/biotek/fiberknot.jpg",
+    imgContain: true,
+    area: "Hombro",
+    servicio: "Artroscopia de Hombro",
+    desc: "Anclas de sutura blanda fabricadas con fibra UHMWPE de ultra alto peso molecular. Requieren orificio piloto más pequeño que anclas tradicionales, minimizando la pérdida ósea. Disponibles en dos diámetros según indicación: 1.5/1.8mm para inestabilidad de hombro y 2.9mm para reparación del manguito rotador. Cargadas con distintas combinaciones de fibra y cinta.",
+    variants: [
+      "FIBERKNOT® Ø1.5mm (carga simple) — inestabilidad, SLAP, Bankart · Cód. 10025, 10026, 10051",
+      "FIBERKNOT® Ø1.8mm (carga doble) — inestabilidad, SLAP, Bankart · Cód. 10027–10030, 10095",
+      "FIBERKNOT® Ø2.9mm (carga doble) — manguito rotador · Cód. 10031–10035, 10002, 10059",
+      "Punch para FIBERKNOT® 2.9mm · Cód. 10055"
+    ],
+    chars: ["UHMWPE", "Orificio piloto reducido", "Carga simple y doble", "CE"],
+    code: "Cód. 10025–10035 · 10051 · 10059"
+  },
+  /* 25 */ {
+    brand: "biotek", name: "BIOCINCH®",
+    subtitle: "Kit para reparación artroscópica de menisco",
+    img: "assets/biotek/biocinch.jpg",
+    imgContain: true,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Kit completo para reparación artroscópica de menisco mediante técnica dentro-fuera (inside-out). Incluye sutura Fiber USP 2-0/0 de 75cm con agujas rectas. Las guías de doble y simple lumen en múltiples ángulos permiten acceder a desgarros del cuerno posterior medial y lateral.",
+    variants: [
+      "Curved Probe · Cód. BAK-7198",
+      "Meniscus Rasp · Cód. BAK-7199",
+      "Meniscus Curette · Cód. BAK-7204",
+      "Guide Sleeve doble lumen: recto, curvo izq/der · Cód. BAK-7200/7201/7202",
+      "Guide Sleeve simple lumen: 10°, 20°, 30°, 40° · Cód. BAK-7211–7215",
+      "Needle Pusher / Sleeve Bender · Cód. BAK-7205 / BAK-7206",
+      "Estuche gráfico para instrumentos · Cód. BAK-7217"
+    ],
+    chars: ["Técnica inside-out", "Guías multilumen", "Kit completo"],
+    code: "Cód. BAK-7198 – BAK-7217"
+  },
+  /* 26 */ {
+    brand: "biotek", name: "VIMFIX®-BT",
+    subtitle: "Ancla PEEK knotless para tenodesis proximal de bíceps",
+    img: "assets/biotek/vimfix-bt.jpg",
+    imgContain: true,
+    area: "Hombro",
+    servicio: "Artroscopia de Hombro",
+    desc: "Sistema de ancla PEEK sin nudo diseñado específicamente para tenodesis proximal de bíceps artroscópica. La punta PEEK dirige el tendón al fondo del socket óseo sin necesidad de externalizarlo ni de usar sutura tipo whipstitch. Posición y tensión se visualizan antes de la inserción definitiva. Las fresas sólidas acanaladas con guía integrada eliminan la necesidad de aguja guía.",
+    variants: [
+      "VIMFIX®-BT PEEK knotless Ø5.0mm · Cód. BAS-9093.50F",
+      "VIMFIX®-BT PEEK knotless Ø6.0mm · Cód. BAS-9094.60F",
+      "VIMFIX®-BT PEEK knotless Ø7.0mm · Cód. BAS-9095.70F",
+      "VIMFIX®-BT PEEK knotless Ø8.0mm · Cód. BAS-9096.80F",
+      "Graft Sizer bíceps Ø5-6-7-8mm · Cód. BAS-9113",
+      "Fluted Reamer Solid Ø5/6/7/8mm · Cód. BAS-9104–9107"
+    ],
+    chars: ["PEEK", "Knotless", "All-arthroscopic", "ISO 13485 · CE"],
+    code: "Cód. BAS-9093.50F – BAS-9096.80F"
+  },
+  /* 27 */ {
+    brand: "biotek", name: "OnButton CL®",
+    subtitle: "Botón de fijación femoral con lazo continuo",
+    img: "assets/biotek/onbutton-cl.jpg",
+    imgContain: true,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Botón de fijación cortical femoral con lazo continuo (CL) para reconstrucción de ligamentos cruzados. El lazo continuo elimina el paso de anudar y permite que una mayor porción del injerto permanezca en el túnel. Precargado con BioFiber #7 blanco-azul como sutura de jalado y poliéster #5 verde como sutura de volteo. UTS de falla 1761N — supera a todos los competidores.",
+    variants: [
+      "OnButton CL® lazo 12mm · Cód. BAK-7081C.12",
+      "OnButton CL® lazo 15mm · Cód. BAK-7081C.15",
+      "OnButton CL® lazo 20mm · Cód. BAK-7081C.20",
+      "OnButton CL® lazo 25mm · Cód. BAK-7081C.25",
+      "OnButton CL® lazo 30mm · Cód. BAK-7081C.30",
+      "OnButton CL® lazo 35mm · Cód. BAK-7081C.35",
+      "OnButton CL® lazo 40mm · Cód. BAK-7081C.40"
+    ],
+    chars: ["UTS 1761N", "Lazo continuo", "Knotless", "Endoscópico"],
+    code: "Cód. BAK-7081C.12 – BAK-7081C.40"
+  },
+  /* 28 */ {
+    brand: "biotek", name: "BUTTONFIX®-F",
+    subtitle: "Fijación knotless para articulación acromioclavicular y sindesmosis",
+    img: "assets/biotek/buttonfix-f.jpg",
+    imgContain: true,
+    area: "Hombro / Tobillo",
+    servicio: "Artroscopia de Hombro",
+    desc: "Sistema de fijación sin nudo para luxación acromioclavicular (articulación AC) y reparación de sindesmosis de tobillo. Dos botones de titanio conectados con fibra UHMWPE No.5: botón oblongo coracoideo (10×3×1.5mm) + botón redondo clavicular (Ø8mm). Pre-ensamblado en insertador para procedimiento ágil. UTS 797.2N. EU-MDR.",
+    variants: [
+      "BUTTONFIX®-F con lazo — sindesmosis · Cód. 10063",
+      "BUTTONFIX®-F con lazo + insertador · Cód. 10403",
+      "Guidewire Trocar-Tip Ø1.5mm · Cód. 10475 / 10494",
+      "Drill Bit Ø3.5mm canalado · Cód. 10369",
+      "Drill Bit Ø5.0mm para botón clavicular · Cód. 10257"
+    ],
+    chars: ["Titanio", "UHMWPE No.5", "UTS 797.2N", "EU-MDR"],
+    code: "Cód. 10063 · 10403"
+  },
+  /* 29 */ {
+    brand: "biotek", name: "Biotwin™",
+    subtitle: "Tornillo de interferencia biocompuesto reabsorbible",
+    img: "assets/biotek/biotwin.jpg",
+    imgContain: true,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Tornillo de interferencia biocompuesto reabsorbible (fabricado por Biomatlante) para fijación de injerto en reconstrucción ligamentaria. Material 75% PLDLLA + 25% BCP: equilibrio óptimo entre resistencia mecánica y regeneración ósea por hidrólisis. Diseño canalado con rosca específica por diámetro para máximo contacto implante-hueso. Rosca cónica graduada para optimizar el torque.",
+    variants: [
+      "Ø7.0mm × 20mm · Cód. 11CPVI0720",
+      "Ø7.0mm × 25mm · Cód. 08CPVI0725",
+      "Ø8.0mm × 25mm · Cód. 08CPVI0825",
+      "Ø8.0mm × 30mm · Cód. 08CPVI0830",
+      "Ø9.0mm × 25mm · Cód. 08CPVI0925",
+      "Ø9.0mm × 30mm · Cód. 08CPVI0930",
+      "Ø10.0mm × 25mm · Cód. 12CPVI1025",
+      "Ø10.0mm × 30mm · Cód. 08CPVI1030",
+      "Ø11.0mm × 35mm · Cód. 15CPVI1135"
+    ],
+    chars: ["75% PLDLLA + 25% BCP", "Bioabsorbible", "Canalado", "ISO 13485 · CE"],
+    code: "Cód. 08CPVI0725 – 15CPVI1135"
+  },
+  /* 30 */ {
+    brand: "biotek", name: "BioFiber®",
+    subtitle: "Suturas y cintas de fibra de alta resistencia",
+    img: "assets/biotek/biofiber.jpg",
+    imgContain: true,
+    area: "Rodilla",
+    servicio: "Artroscopia de Rodilla",
+    desc: "Línea completa de suturas y cintas de fibra de alta resistencia para aumentación de injerto y fijación en cirugía artroscópica. Disponible en fibra trenzada, cinta Tape y lazo (loop), en calibres USP 0 y 2, con diferentes combinaciones de color y aguja para distintos pasos quirúrgicos.",
+    variants: [
+      "BioFiber® Fibra USP 0 con aguja Reverse Cutting, Blanco-Azul, 36cm · Cód. 10220",
+      "BioFiber® Fibra USP 2 con aguja MO-6, Blanco, 36cm · Cód. BF-2W",
+      "BioFiber® Fibra USP 2 con aguja MO-6, Blanco-Azul, 36cm · Cód. BF-2WC",
+      "BioFiber® Tape Size 2, Blanco-Azul, 39cm · Cód. BF-2ST",
+      "BioFiber® Tape Size 2, Blanco-Negro, 39cm · Cód. BF-2BST",
+      "BioFiber® Loop Size 2 con aguja recta, 6cm Blanco-Azul, 24cm · Cód. BF-2WSB"
+    ],
+    chars: ["Alta resistencia", "Fibra y Tape", "Múltiples calibres"],
+    code: "Cód. BF-2W · BF-2ST · BF-2WSB"
+  }
+];
+
+/* ===== Brand badge HTML ===== */
+function brandBadge(brand) {
+  const map = {
+    biograft: "Biograft",
+    daonsa:   "Daonsa",
+    medline:  "Medline",
+    biotek:   "Biotek"
+  };
+  return `<span class="brand-badge ${brand}">${map[brand] || brand}</span>`;
+}
+
+/* ===== Open modal ===== */
+function openModal(id) {
+  const p = PRODUCTS[id];
+  if (!p) return;
+  const overlay  = document.getElementById("modal");
+  const imgEl    = document.getElementById("modal-img");
+  const badge    = document.getElementById("modal-media-brand");
+  const content  = document.getElementById("modal-content");
+
+  imgEl.src = p.img;
+  imgEl.alt = p.name;
+  imgEl.className = p.imgContain ? "img-contain" : "";
+  badge.innerHTML = brandBadge(p.brand);
+
+  let varHTML = "";
+  if (p.variants && p.variants.length) {
+    varHTML = `<div class="modal-variants">
+      <div class="modal-section-title">Variantes / Contenido</div>
+      <ul>${p.variants.map(v => `<li>${v}</li>`).join("")}</ul>
+    </div>`;
+  }
+
+  let charsHTML = "";
+  if (p.chars && p.chars.length) {
+    charsHTML = `<div>
+      <div class="modal-section-title">Características</div>
+      <div class="modal-chars">${p.chars.map(c => `<span class="modal-char-tag">${c}</span>`).join("")}</div>
+    </div>`;
+  }
+
+  const codeHTML = p.code ? `<span class="modal-code">${p.code}</span>` : "";
+  const ctaUrl   = `contacto.html?producto=${encodeURIComponent(p.name)}&servicio=${encodeURIComponent(p.servicio)}`;
+  const waText   = `Hola%2C%20me%20interesa%20cotizar%20el%20producto%3A%20${encodeURIComponent(p.name)}%20de%20FG%20Artrom%C3%A9dica.`;
+
+  content.innerHTML = `
+    <div>
+      <p class="modal-subtitle">${p.subtitle}</p>
+      ${codeHTML}
+      <h2 class="modal-title" id="modal-title">${p.name}</h2>
+    </div>
+    <p class="modal-desc">${p.desc}</p>
+    ${varHTML}
+    ${charsHTML}
+    <div class="modal-cta">
+      <a href="${ctaUrl}" class="btn btn-primary btn-sm">
+        Solicitar Cotización
+        <svg class="arr" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="https://wa.me/524448037203?text=${waText}" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  `;
+
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+/* ===== Filter logic (AND: brand × area) ===== */
+let activeBrand = "all";
+let activeArea  = "all";
+
+function applyFilters() {
+  let visible = 0;
+  document.querySelectorAll(".prod-card").forEach(card => {
+    const brandMatch = activeBrand === "all" || card.dataset.brand === activeBrand;
+    const cardAreas  = (card.dataset.area || "").split(" ");
+    const areaMatch  = activeArea === "all" || cardAreas.includes(activeArea);
+    const show = brandMatch && areaMatch;
+    card.style.display = show ? "" : "none";
+    if (show) visible++;
+  });
+  const empty = document.getElementById("cat-empty");
+  if (empty) empty.style.display = visible === 0 ? "" : "none";
+}
+
+document.getElementById("brand-filters").addEventListener("click", e => {
+  const tab = e.target.closest("[data-brand]");
+  if (!tab) return;
+  document.querySelectorAll("#brand-filters [data-brand]").forEach(t => {
+    t.classList.remove("active");
+    t.setAttribute("aria-selected", "false");
+  });
+  tab.classList.add("active");
+  tab.setAttribute("aria-selected", "true");
+  activeBrand = tab.dataset.brand;
+  applyFilters();
+});
+
+document.getElementById("area-filters").addEventListener("click", e => {
+  const tab = e.target.closest("[data-area]");
+  if (!tab) return;
+  document.querySelectorAll("#area-filters [data-area]").forEach(t => {
+    t.classList.remove("active");
+    t.setAttribute("aria-selected", "false");
+  });
+  tab.classList.add("active");
+  tab.setAttribute("aria-selected", "true");
+  activeArea = tab.dataset.area;
+  applyFilters();
+});
+
+/* ===== Card click events ===== */
+document.querySelectorAll(".prod-card").forEach(card => {
+  const id = parseInt(card.dataset.id);
+  card.addEventListener("click", () => openModal(id));
+  card.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(id); }
+  });
+});
+
+/* ===== Modal close events ===== */
+document.getElementById("modal-close").addEventListener("click", closeModal);
+document.getElementById("modal").addEventListener("click", e => {
+  if (e.target === document.getElementById("modal")) closeModal();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+</script>
+</body>
+</html>

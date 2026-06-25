@@ -355,6 +355,25 @@
       }
     });
   })();
+
+  /* Pre-fill form from catálogo URL params (?producto=NAME&servicio=VALUE) */
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const producto = params.get('producto');
+    const servicio = params.get('servicio');
+    if (servicio) {
+      const sel = document.getElementById('servicio');
+      if (sel) {
+        [...sel.options].forEach(o => { if (o.value === servicio) o.selected = true; });
+      }
+    }
+    if (producto) {
+      const msg = document.getElementById('mensaje');
+      if (msg && !msg.value) {
+        msg.value = `Hola, me interesa cotizar el siguiente producto: ${producto}.\n\nPor favor, indíquenme disponibilidad, precio y tiempo de entrega. Gracias.`;
+      }
+    }
+  })();
 </script>
 </body>
 </html>
