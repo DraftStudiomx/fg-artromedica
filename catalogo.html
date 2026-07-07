@@ -470,11 +470,11 @@
         <span class="cat-filter-row-label">Proveedor</span>
         <div class="cat-filters" id="brand-filters" role="tablist" aria-label="Filtrar por proveedor">
           <button class="cat-tab active" data-brand="all" role="tab" aria-selected="true">
-            Todos <span class="count" id="count-all">31</span>
+            Todos <span class="count" id="count-all">32</span>
           </button>
           <button class="cat-tab" data-brand="biograft" role="tab" aria-selected="false">
             <span class="brand-dot" style="background:#0A7A6B"></span>
-            Biograft <span class="count">2</span>
+            Biograft <span class="count">3</span>
           </button>
           <button class="cat-tab" data-brand="daonsa" role="tab" aria-selected="false">
             <span class="brand-dot" style="background:#0080BB"></span>
@@ -555,6 +555,30 @@
         </div>
         <div class="prod-card-footer">
           <button class="btn-ver" aria-label="Ver detalles de Tendón Procesado">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="biograft" data-area="implantes" data-id="31" tabindex="0" role="button" aria-label="Ver detalles de BioDBM NANO">
+        <div class="prod-card-media">
+          <img src="assets/nano-matriz-osea-biograft.webp"
+               alt="BioDBM NANO Matriz Ósea Desmineralizada lista para usar"
+               loading="lazy"
+               class="img-contain"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge biograft">Biograft</span>
+            <span class="area-badge">Implantes Biológicos</span>
+          </div>
+          <h3 class="prod-name">BioDBM NANO®</h3>
+          <p class="prod-desc">Matriz Ósea Desmineralizada Nano lista para usar. Injerto óseo procesado en múltiples presentaciones para aplicación clínica inmediata.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de BioDBM NANO">
             Ver detalles
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
@@ -1352,6 +1376,24 @@ const PRODUCTS = [
     ],
     chars: ["Clase III", "Estéril", "Sin látex", "Criopreservado −40°C"],
     code: ""
+  },
+  /* 31 */ {
+    brand: "biograft", name: "BioDBM NANO®",
+    subtitle: "Matriz Ósea Desmineralizada Nano lista para usar",
+    img: "assets/nano-matriz-osea-biograft.webp",
+    imgContain: true,
+    area: "Implantes Biológicos",
+    servicio: "Cirugía con Implantes Ortopédicos",
+    desc: "El BioDBM NANO® es una Matriz Ósea Desmineralizada Nano lista para usar. Injerto óseo procesado disponible en múltiples presentaciones para aplicación clínica inmediata, sin requerir preparación adicional. Registro Sanitario R.S.1554C2018 SSA.",
+    variants: [
+      "0.5 cc",
+      "1.0 cc",
+      "2.0 cc",
+      "2.5 cc",
+      "3.0 cc"
+    ],
+    chars: ["Listo para usar", "Nano", "Registro Sanitario SSA"],
+    code: "SKU: 18100650 / 18100601 / 18100602 / 18100600 / 18100603"
   },
   /* 2 */ {
     brand: "daonsa", name: "Dao Sling",
