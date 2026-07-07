@@ -470,7 +470,7 @@
         <span class="cat-filter-row-label">Proveedor</span>
         <div class="cat-filters" id="brand-filters" role="tablist" aria-label="Filtrar por proveedor">
           <button class="cat-tab active" data-brand="all" role="tab" aria-selected="true">
-            Todos <span class="count" id="count-all">42</span>
+            Todos <span class="count" id="count-all">44</span>
           </button>
           <button class="cat-tab" data-brand="biograft" role="tab" aria-selected="false">
             <span class="brand-dot" style="background:#0A7A6B"></span>
@@ -478,7 +478,7 @@
           </button>
           <button class="cat-tab" data-brand="daonsa" role="tab" aria-selected="false">
             <span class="brand-dot" style="background:#0080BB"></span>
-            Daonsa <span class="count">20</span>
+            Daonsa <span class="count">22</span>
           </button>
           <button class="cat-tab" data-brand="medline" role="tab" aria-selected="false">
             <span class="brand-dot" style="background:#C41E3A"></span>
@@ -506,6 +506,7 @@
           <button class="cat-tab" data-area="terapia" role="tab" aria-selected="false">Terapia</button>
           <button class="cat-tab" data-area="obstetricia" role="tab" aria-selected="false">Obstetricia</button>
           <button class="cat-tab" data-area="pediatrico" role="tab" aria-selected="false">Pediátrico</button>
+          <button class="cat-tab" data-area="cpm" role="tab" aria-selected="false">Máquina de Movimientos Pasivos</button>
         </div>
       </div>
     </div>
@@ -953,6 +954,46 @@
         </div>
         <div class="prod-card-footer">
           <button class="btn-ver" aria-label="Ver detalles de Sistema de Enfriamiento">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="cpm" data-id="44" tabindex="0" role="button" aria-label="Ver detalles de Máquina CPM para Rodilla">
+        <div class="prod-card-media">
+          <img src="assets/maquina-cpm-rodilla.jpg" alt="Máquina de Movimiento Continuo Pasivo para Rodilla Daonsa" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Máquina de Movimientos Pasivos</span>
+          </div>
+          <h3 class="prod-name">Máquina de Movimiento Continuo Pasivo para Rodilla</h3>
+          <p class="prod-desc">CPM liviana y portátil para hospital o hogar. Programable en flexión, extensión, velocidad y pausas. Control alámbrico con función de bloqueo.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Máquina CPM para Rodilla">
+            Ver detalles
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <article class="prod-card reveal" data-brand="daonsa" data-area="cpm" data-id="45" tabindex="0" role="button" aria-label="Ver detalles de Máquina CPM para Tobillo">
+        <div class="prod-card-media">
+          <img src="assets/maquina-cpm-tobillo.jpg" alt="Máquina de Movimiento Continuo Pasivo para Tobillo Daonsa" loading="lazy" class="img-contain" onerror="this.style.display='none'" />
+        </div>
+        <div class="prod-card-body">
+          <div class="card-badges">
+            <span class="brand-badge daonsa">Daonsa</span>
+            <span class="area-badge">Máquina de Movimientos Pasivos</span>
+          </div>
+          <h3 class="prod-name">Máquina de Movimiento Continuo Pasivo para Tobillo</h3>
+          <p class="prod-desc">CPM con rango completo de flexión dorsal/plantar e inversión/eversión. Velocidad ajustable del 5% al 100%. Portátil y de fácil manejo.</p>
+        </div>
+        <div class="prod-card-footer">
+          <button class="btn-ver" aria-label="Ver detalles de Máquina CPM para Tobillo">
             Ver detalles
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
@@ -2299,6 +2340,30 @@ const PRODUCTS = [
     ],
     chars: ["Palanca 4 puntos", "Estabilización LCA", "Opción LCP"],
     code: "SKU: FOR"
+  },
+  /* 44 */ {
+    brand: "daonsa", name: "Máquina de Movimiento Continuo Pasivo para Rodilla",
+    subtitle: "CPM liviana y portátil para rodilla",
+    img: "assets/maquina-cpm-rodilla.jpg",
+    imgContain: true,
+    area: "Máquina de Movimientos Pasivos",
+    servicio: "Rehabilitación",
+    desc: "Máquina CPM liviana y portátil, ideal para usarse en hospital o en el hogar. Control alámbrico de fácil manejo con función de bloqueo contra cambios no autorizados. Sin configuración necesaria para pierna izquierda o derecha. Programable en flexión (hasta 120°), extensión (hasta -10°), velocidad (30°–150°/min) y pausas (0–30 seg). Peso: 12 kg.",
+    variants: ["Una presentación · SKU: CPM-R"],
+    chars: ["Flexión hasta 120°", "Portátil 12 kg", "Control alámbrico"],
+    code: "SKU: CPM-R"
+  },
+  /* 45 */ {
+    brand: "daonsa", name: "Máquina de Movimiento Continuo Pasivo para Tobillo",
+    subtitle: "CPM con rango completo de movimiento para tobillo",
+    img: "assets/maquina-cpm-tobillo.jpg",
+    imgContain: true,
+    area: "Máquina de Movimientos Pasivos",
+    servicio: "Rehabilitación",
+    desc: "Unidad CPM para tobillo con rango completo de movimiento de flexión dorsal/plantar e inversión/eversión. Flexión dorsal/plantar: 50°–0°–40°. Inversión/eversión: 40°–0°–20°. Velocidad ajustable del 5% al 100% por minuto. Dimensiones: 78 × 42 × 39.5 cm.",
+    variants: ["Una presentación · SKU: CPM-T"],
+    chars: ["Dorsal/Plantar 50°–40°", "Inversión/Eversión", "Velocidad ajustable"],
+    code: "SKU: CPM-T"
   }
 ];
 
