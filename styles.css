@@ -1491,6 +1491,28 @@ body[data-hero="a"] .nav:not(.scrolled) .btn-primary:hover {
   .nav-links { display: none; }
   .btn-cta-nav { display: none; }
   .nav-brand .brand-name span { display: none; }
+  .nav.nav-open .nav-links {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 16px; right: 16px;
+    background: #fff;
+    flex-direction: column;
+    padding: 12px;
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(11, 31, 63, 0.18);
+    border: 1px solid var(--c-line);
+    margin-top: 8px;
+    gap: 4px;
+  }
+  .nav.nav-open .nav-links a {
+    color: var(--c-navy-900) !important;
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+  .nav.nav-open .nav-links a:hover {
+    background: rgba(168, 204, 236, 0.18);
+  }
   .nav-mobile-toggle {
     display: inline-flex;
     margin-left: auto;

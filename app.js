@@ -119,24 +119,16 @@
   const btn = document.getElementById('mobile-toggle');
   const links = document.querySelector('.nav-links');
   if (!btn || !links) return;
+  const nav = document.getElementById('nav');
   btn.addEventListener('click', () => {
-    const open = links.style.display === 'flex';
+    const open = nav.classList.contains('nav-open');
     if (open) {
-      links.style.display = '';
+      nav.classList.remove('nav-open');
     } else {
-      links.style.display = 'flex';
-      links.style.position = 'absolute';
-      links.style.top = '100%';
-      links.style.left = '16px';
-      links.style.right = '16px';
-      links.style.background = '#fff';
-      links.style.flexDirection = 'column';
-      links.style.padding = '12px';
-      links.style.borderRadius = '14px';
-      links.style.boxShadow = '0 12px 32px rgba(11, 31, 63, 0.18)';
-      links.style.border = '1px solid var(--c-line)';
-      links.style.marginTop = '8px';
+      nav.classList.add('nav-open');
     }
   });
+  // Cerrar al hacer click en un link
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('nav-open')));
 })();
 
