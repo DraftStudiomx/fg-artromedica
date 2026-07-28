@@ -23,7 +23,7 @@
   --ff: "Outfit", system-ui, sans-serif;
 
   /* Spacing scale */
-  --pad-x: clamp(20px, 5vw, 96px);
+  --pad-x: clamp(24px, 5vw, 96px);
 
   /* Radius */
   --r-sm: 8px;
@@ -1545,6 +1545,7 @@ body[data-hero="a"] .nav:not(.scrolled) .btn-primary:hover {
   .value-prop-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 640px) {
+
   .services-grid { grid-template-columns: 1fr; }
   .catalog-grid { grid-template-columns: repeat(2, 1fr); }
   .cat-preview-grid { grid-template-columns: 1fr 1fr; }

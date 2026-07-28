@@ -130,5 +130,7 @@
   });
   // Cerrar al hacer click en un link
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('nav-open')));
+  // Cerrar al hacer scroll
+  window.addEventListener('scroll', () => nav.classList.remove('nav-open'), { passive: true });
 })();
 
