@@ -1489,6 +1489,8 @@ body[data-hero="a"] .nav:not(.scrolled) .btn-primary:hover {
 /* ========== Responsive ========== */
 @media (max-width: 980px) {
   .nav-links { display: none; }
+  .btn-cta-nav { display: none; }
+  .nav-brand .brand-name span { display: none; }
   .nav-mobile-toggle {
     display: inline-flex;
     margin-left: auto;
